@@ -1,0 +1,34 @@
+<html>
+<head>
+	<script type='text/javascript' src='knockout-3.0.0.js'></script>
+	<script type='text/javascript' src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.js'></script>
+	<script type='text/javascript' src='script.js'></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Mini Project for Ace Maxtrix</title>
+</head>
+<body>
+	<div id="container">
+		Filter Key: <input id="keyInput" data-bind="value: filterKey, valueUpdate: 'afterkeydown'" /> <button data-bind="click: clearKey">Clear</button><button data-bind="click: keyNumbers">Apply</button><br />
+		Filter Text: <input id="textInput" data-bind="value: filterText, valueUpdate: 'afterkeydown'" /><button data-bind="click: clearText">Clear</button><button data-bind="click: keyNumbers">Apply</button><br /><br />
+		<!-- <p id="filterSentence" data-bind="text: filterSentence"> Sentence Filtered</p> -->
+		<span class="result">Sentence Filtered</span><ul id="filterSentence" data-bind="foreach: keyNumbers()[3]">
+			<li data-bind="text: $data"></li><br />
+		</ul>
+		<span class="result">Search Results for key: <span id="filterKey" data-bind="text: filterKey"></span></span><ul>
+			<li><p>Number of keys in inputed text is: <span data-bind="text: keyNumbers()[0]"></span><p></li>
+			<li><p>Number of verbatim having the key is: <span data-bind="text: keyNumbers()[1]"></span><p></li>
+			<li><p>Number of words in inputed text is: <span data-bind="text: keyNumbers()[2]"></span><p></li>
+		</ul>
+
+		<span id="noteWord">Note: </span><ul id="note">
+			<li>This is a word search, not letter search. Ex: "on" search will return only the "on" word, and not ".on" or "content".</li>
+			<li>The dot character is a problem because regex expression in javascript is very weird.</li>
+			<li>No number searches.</li>
+			<li>A word is defined by a space so "IamKevin" is one word where as "I am Kevin" is 3 words.</li>
+			<li>Special characters are convereted to null, so "I'm" becomes "Im" and "I" will not include "Im".</li>
+			<li> Will spend more time on special cases such as key "I'm" should search as "Im" in javascript.</li>
+		</ul>
+		<!-- abuse of br tag is understood -->
+ 	</div>
+</body>
+</html>
